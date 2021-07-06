@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "5dccc535-6f0e-4376-a9bd-4412c9b45c26",
+		"name": "GK-API-Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OneCallWeatherAPI- Positive Test Scenario- Valid API Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Success',function(){",
+							"     pm.response.to.have.status(200);",
+							"",
+							"})",
+							"",
+							"pm.test('Check Response',function(){",
+							"     pm.response.to.be.json;",
+							"     pm.response.to.be.ok;",
+							"})",
+							"",
+							"let jsonData = pm.response.json()",
+							"pm.test('OneCallWeatherAPI', () => {",
+							"    _.each(jsonData.Fee, (item) => {",
+							"        pm.expect(item.clientName).to.include('33.44')",
+							"    })",
+							"})",
+							"",
+							"console.log('OneCallWeatherAPI')"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"strictSSL": true,
+				"followOriginalHttpMethod": true,
+				"followAuthorizationHeader": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=cf7514c4a0f33173bc97bdf1529564ef",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"onecall"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "33.44"
+						},
+						{
+							"key": "lon",
+							"value": "-94.04"
+						},
+						{
+							"key": "exclude",
+							"value": "hourly,daily"
+						},
+						{
+							"key": "appid",
+							"value": "cf7514c4a0f33173bc97bdf1529564ef"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurrentWeatherData-Positive Test Scenario- Enter Valid City name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Success',function(){",
+							"     pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test('Check Response',function(){",
+							"     pm.response.to.be.json;",
+							"     pm.response.to.be.ok;",
+							"})",
+							"",
+							"",
+							"let jsonData = pm.response.json()",
+							"pm.test('CurrentWeatherData', () => {",
+							"    _.each(jsonData.Fee, (item) => {",
+							"        pm.expect(item.clientName).to.include('Amsterdam')",
+							"    })",
+							"})",
+							"",
+							"",
+							"console.log('CurrentWeatherData')"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q=Amsterdam&appid=cf7514c4a0f33173bc97bdf1529564ef",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Amsterdam"
+						},
+						{
+							"key": "appid",
+							"value": "cf7514c4a0f33173bc97bdf1529564ef"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OneCallWeatherAPI-Negative Test Scenario-Invalid API Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code 401',function(){",
+							"     pm.response.to.have.status(401);",
+							"",
+							"})",
+							"",
+							"",
+							"let jsonData = pm.response.json()",
+							"pm.test('Invalid API key', () => {",
+							"    _.each(jsonData.Fee, (item) => {",
+							"        pm.expect(item.clientName).to.include('Invalid API key')",
+							"    })",
+							"})",
+							"",
+							"console.log('OneCallWeatherAPI')"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/onecall?lat=33.22&lon=-94.04&exclude=hourly,daily&appid=cf7514c4a0f33173bc97bdf1529564ef99",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"onecall"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "33.22"
+						},
+						{
+							"key": "lon",
+							"value": "-94.04"
+						},
+						{
+							"key": "exclude",
+							"value": "hourly,daily"
+						},
+						{
+							"key": "appid",
+							"value": "cf7514c4a0f33173bc97bdf1529564ef99"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurrentWeatherData-Negative Test Scenario-Enter Invalid City Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status 404',function(){",
+							"     pm.response.to.have.status(404);",
+							"})",
+							"",
+							"let jsonData = pm.response.json()",
+							"pm.test('City not found', () => {",
+							"    _.each(jsonData.Fee, (item) => {",
+							"        pm.expect(item.clientName).to.include('city not found')",
+							"    })",
+							"})",
+							"",
+							"console.log('OneCallWeatherAPI')"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q=Thusanang&appid=cf7514c4a0f33173bc97bdf1529564ef",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Thusanang"
+						},
+						{
+							"key": "appid",
+							"value": "cf7514c4a0f33173bc97bdf1529564ef"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OneCallWeatherAPI-Negative Test Scenario-Enter invalid Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status 400',function(){",
+							"     pm.response.to.have.status(400);",
+							"})",
+							"",
+							"let jsonData = pm.response.json()",
+							"",
+							"pm.test('Message contains - wrong latitude', () => {",
+							"    _.each(jsonData.Fee, (item) => {",
+							"        pm.expect(item.clientName).to.include('wrong latitude')",
+							"    })",
+							"})",
+							"",
+							"console.log('OneCallWeatherAPI')"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/onecall?lat=invalid latitude&lon=-94.04&exclude=hourly,daily&appid=cf7514c4a0f33173bc97bdf1529564ef",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"onecall"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "invalid latitude"
+						},
+						{
+							"key": "lon",
+							"value": "-94.04"
+						},
+						{
+							"key": "exclude",
+							"value": "hourly,daily"
+						},
+						{
+							"key": "appid",
+							"value": "cf7514c4a0f33173bc97bdf1529564ef"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
