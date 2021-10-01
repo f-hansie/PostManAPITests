@@ -19,7 +19,7 @@
   
  # Troubleshooting:
   => Should the tests fails, in most case first thing make sure you connected to the internet
-  => Sometimes the tests fails because of time-out to get reponse from the server, you can retry again to run the tests
+  => Sometimes the tests fails because of time-out to get response from the server, you can retry again to run the tests
   
  # Requirements:
   => You need to install PostMan
